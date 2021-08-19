@@ -64,6 +64,7 @@ tematica(juego,leagueOfLegends).
 tematica(juego,minecraft).
 tematica(juego,aoe).
 
+% PUNTO 4
 adictiva(RedSocial):-
     redSocial(RedSocial),
     forall(
@@ -81,6 +82,7 @@ contenidoAdictivo( foto(Participantes) ):-
     length(Participantes, CantidadParticipantes),
     CantidadParticipantes < 4.
 
+% PUNTO 5
 colaboran(Usuario,OtroUsuario):-
     contenido(Usuario,_,Contenido),
     apareceEn(Contenido,OtroUsuario).
@@ -101,6 +103,7 @@ caminoALaFama(Usuario):-
     influencer(Influencer),
     colaboran(Usuario,Influencer).
 
+% PUNTO 6
 caminoALaFama(Usuario):-
     usuario(Usuario),
     not(influencer(Usuario)),
@@ -108,3 +111,15 @@ caminoALaFama(Usuario):-
     colaboran(Influencer,OtroUsuario),
     colaboran(OtroUsuario,Usuario).
 
+
+% PUNTO 7 A)
+:- begin_tests(punto_7_a).
+
+test(redes_sociales_adictivas, set(RedesSociales=[instagram,tikTok,twitch])):-
+    adictiva(RedesSociales).
+
+:- end_tests(punto_7_a).
+
+% PUNTO 7) B)
+% Prolog trabaja bajo el concepto de universo cerrado, es decir, todo hecho que no esté en nuestra base de conocimientos no existe o en tal caso será falsa cualquier consulta que sobre el se haga.
+% Es por esto que si necesitamos decir que "algo no es así" basta con no agregarlo en la base de conocimientos, pues el motor de inferencia de Prolog tomará cualquier hecho que no se escriba como false.
