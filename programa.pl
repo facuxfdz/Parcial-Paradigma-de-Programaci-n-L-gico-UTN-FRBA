@@ -56,3 +56,7 @@ test(usuario_con_menos_de_10000_seguidores_no_es_influencer, fail):-
 omnipresente(Usuario):-
     usuario(Usuario),
     forall(redSocial(RedSocial),canal(Usuario,RedSocial)).
+
+exclusivo(Usuario):-
+    canal(Usuario,RedSocial),
+    not((canal(Usuario,OtraRedSocial), RedSocial \= OtraRedSocial)).
