@@ -82,4 +82,15 @@ contenidoAdictivo( foto(Participantes) ):-
     CantidadParticipantes < 4.
 
 colaboran(Usuario,OtroUsuario):-
-    contenido(Usuario,_,Contenido).
+    contenido(Usuario,_,Contenido),
+    apareceEn(Contenido,OtroUsuario).
+
+colaboran(Usuario,OtroUsuario):-
+    contenido(OtroUsuario,_,Contenido),
+    apareceEn(Contenido,Usuario).
+
+apareceEn(foto(Participantes),Usuario):-
+    member(Usuario, Participantes).
+    
+apareceEn(video(Participantes,_),Usuario):-
+    member(Usuario, Participantes).
