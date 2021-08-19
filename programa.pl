@@ -12,8 +12,14 @@ canal(cami,tikTok(2000)).
 canal(dani,youtube(1000000)).
 canal(evelyn,instagram(1)).
 
+redSocial(youtube(_)).
+redSocial(instagram(_)).
+redSocial(tikTok(_)).
+redSocial(twitch(_)).
+
 usuario(Usuario):-
     canal(Usuario,_).
+
 
 influencer(Usuario):-
     usuario(Usuario), % Tenemos que ligar la variable antes de llegar a totalSeguidores puesto que este no es inversible
@@ -46,3 +52,7 @@ test(usuario_con_menos_de_10000_seguidores_no_es_influencer, fail):-
     influencer(evelyn).
 
 :- end_tests(punto_1_a).
+
+omnipresente(Usuario):-
+    usuario(Usuario),
+    forall(redSocial(RedSocial),canal(Usuario,RedSocial)).
