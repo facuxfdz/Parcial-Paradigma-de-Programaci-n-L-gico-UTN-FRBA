@@ -54,3 +54,15 @@ exclusivo(Usuario):-
     not((canal(Usuario,OtraRedSocial), RedSocial \= OtraRedSocial)).
 
 % PUNTO 3)
+
+contenido(ana,tikTok,video([beto,evelyn],1)).
+contenido(ana,tikTok,video([ana],1)).
+contenido(ana,instagram,foto([ana])).
+contenido(beto,instagram,foto([])).
+contenido(cami,twitch,stream(leagueOfLegends)).
+contenido(cami,youtube,video([cami],5)).
+contenido(evelyn,instagram,foto([evelyn,cami])).
+
+tematica(juego,leagueOfLegends).
+tematica(juego,minecraft).
+tematica(juego,aoe).
