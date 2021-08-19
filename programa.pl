@@ -20,7 +20,7 @@ redSocial(twitch(_)).
 usuario(Usuario):-
     canal(Usuario,_).
 
-
+% PUNTO 2) A)
 influencer(Usuario):-
     usuario(Usuario), % Tenemos que ligar la variable antes de llegar a totalSeguidores puesto que este no es inversible
     totalSeguidores(Usuario,TotalSeguidores),
@@ -43,20 +43,14 @@ seguidoresSegun(instagram(Seguidores),Seguidores).
 seguidoresSegun(tikTok(Seguidores),Seguidores).
 seguidoresSegun(twitch(Seguidores),Seguidores).
 
-:- begin_tests(punto_1_a).
-
-test(usuario_con_mas_de_10000_seguidores_es_influencer):-
-    influencer(dani).
-
-test(usuario_con_menos_de_10000_seguidores_no_es_influencer, fail):-
-    influencer(evelyn).
-
-:- end_tests(punto_1_a).
-
+% PUNTO 2) B)
 omnipresente(Usuario):-
     usuario(Usuario),
     forall(redSocial(RedSocial),canal(Usuario,RedSocial)).
 
+% PUNTO 2) C)
 exclusivo(Usuario):-
     canal(Usuario,RedSocial),
     not((canal(Usuario,OtraRedSocial), RedSocial \= OtraRedSocial)).
+
+% PUNTO 3)
