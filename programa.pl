@@ -66,3 +66,22 @@ contenido(evelyn,instagram,foto([evelyn,cami])).
 tematica(juego,leagueOfLegends).
 tematica(juego,minecraft).
 tematica(juego,aoe).
+
+adictiva(RedSocial):-
+    canal(_,RedSocial),
+    forall(
+        contenido(_,RedSocial,Contenido),
+        contenidoAdictivo(Contenido)
+    ).
+
+contenidoAdictivo( video(_,Duracion) ):-
+    Duracion < 3.
+
+contenidoAdictivo( stream(Tematica) ):-
+    tematica(juego,Tematica).
+
+contenidoAdictivo( foto(Participantes) ):-
+    length(Participantes, CantidadParticipantes),
+    CantidadParticipantes < 4.
+    
+
