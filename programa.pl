@@ -81,3 +81,5 @@ contenidoAdictivo( foto(Participantes) ):-
     length(Participantes, CantidadParticipantes),
     CantidadParticipantes < 4.
 
+colaboran(Usuario,OtroUsuario):-
+    contenido(Usuario,_,Contenido).
