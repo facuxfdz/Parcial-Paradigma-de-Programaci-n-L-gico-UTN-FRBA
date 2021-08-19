@@ -115,6 +115,7 @@ caminoALaFama(Usuario):-
     caminoALaFama(OtroUsuario).
 
 
+
 % PUNTO 7 A)
 :- begin_tests(punto_7_a).
 
