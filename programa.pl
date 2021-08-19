@@ -12,10 +12,6 @@ canal(cami,tikTok,2000).
 canal(dani,youtube,1000000).
 canal(evelyn,instagram,1).
 
-% redSocial(youtube(_)).
-% redSocial(instagram(_)).
-% redSocial(tikTok(_)).
-% redSocial(twitch(_)).
 
 redSocial(RedSocial):-
     distinct(RedSocial,canal(_,RedSocial,_)).
@@ -42,12 +38,18 @@ totalSeguidores(Usuario,TotalSeguidores):-
 % PUNTO 2) B)
 omnipresente(Usuario):-
     usuario(Usuario),
-    forall(redSocial(RedSocial),canal(Usuario,RedSocial,_)).
+    forall(
+        redSocial(RedSocial),
+        canal(Usuario,RedSocial,_)
+    ).
 
 % PUNTO 2) C)
 exclusivo(Usuario):-
     canal(Usuario,RedSocial,_),
-    not((canal(Usuario,OtraRedSocial,_), RedSocial \= OtraRedSocial)).
+    not((
+        canal(Usuario,OtraRedSocial,_), 
+        RedSocial \= OtraRedSocial
+    )).
 
 % PUNTO 3)
 
@@ -97,19 +99,20 @@ apareceEn(foto(Participantes),Usuario):-
 apareceEn(video(Participantes,_),Usuario):-
     member(Usuario, Participantes).
 
-caminoALaFama(Usuario):-
-    usuario(Usuario),
-    not(influencer(Usuario)),
-    influencer(Influencer),
-    colaboran(Usuario,Influencer).
 
 % PUNTO 6
 caminoALaFama(Usuario):-
     usuario(Usuario),
     not(influencer(Usuario)),
     influencer(Influencer),
+    colaboran(Usuario,Influencer).
+
+caminoALaFama(Usuario):-
+    usuario(Usuario),
+    not(influencer(Usuario)),
+    influencer(Influencer),
     colaboran(Influencer,OtroUsuario),
-    colaboran(OtroUsuario,Usuario).
+    caminoALaFama(OtroUsuario).
 
 
 % PUNTO 7 A)
