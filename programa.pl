@@ -94,3 +94,17 @@ apareceEn(foto(Participantes),Usuario):-
     
 apareceEn(video(Participantes,_),Usuario):-
     member(Usuario, Participantes).
+
+caminoALaFama(Usuario):-
+    usuario(Usuario),
+    not(influencer(Usuario)),
+    influencer(Influencer),
+    colaboran(Usuario,Influencer).
+
+caminoALaFama(Usuario):-
+    usuario(Usuario),
+    not(influencer(Usuario)),
+    influencer(Influencer),
+    colaboran(Influencer,OtroUsuario),
+    colaboran(OtroUsuario,Usuario).
+
